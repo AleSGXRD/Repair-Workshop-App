@@ -11,7 +11,7 @@ This was implemented with Angular using the MVC design pattern, where you can re
 
 <h3>Views</h3>
 1- View where all the data of an order is collected<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/1.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/1.jpg">
 2- View where you see pending orders<br>
 <img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/2.jpg">
 3- View where all the information of a client is seen along with their orders and their statuses (pending or completed)<br>
