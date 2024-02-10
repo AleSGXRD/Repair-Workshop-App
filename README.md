@@ -11,13 +11,13 @@ This was implemented with Angular using the MVC design pattern, where you can re
 
 <h3>Views</h3>
 1- View where all the data of an order is collected<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/1.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/1.png">
 2- View where you see pending orders<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/2.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/2.png">
 3- View where all the information of a client is seen along with their orders and their statuses (pending or completed)<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/3.jpg">
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/4.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/3.png">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/4.png">
 4- View where the order data is displayed and allows the order to be completed or failed<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/5.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/5.png">
 5- View where completed orders are shown<br>
-<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/images/6.jpg">
+<img src ="https://github.com/AleSGXRD/Repair-Workshop-App/blob/main/images/6.png">
