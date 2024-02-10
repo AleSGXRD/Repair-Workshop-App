@@ -1,0 +1,7 @@
+
+.list-orders li .imagen svg{
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    z-index: 3;
+}

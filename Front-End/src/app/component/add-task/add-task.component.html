@@ -1,0 +1,238 @@
+
+
+<div class="field h-auto w-auto z-0" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" >
+    <div class="container" >
+        <div class="row "> 
+            <div class="col title alignTextCenter " >
+                New Order
+            </div>
+        </div>
+            <form (submit)="sendInfo()" class="row px-5 w-auto align-items-start justify-content-center"style="font-size: 24px; color: black; ">
+                <div class="col-12" style="display: flex; justify-content: center;">
+                    <div class="Header">Client</div>  
+                </div>
+                <div class="col-md-5 col-sm-12 px-0 ">
+                    <div class="inputHeader w-auto bg-primary">Name</div>   
+                    <input type="text" [(ngModel)]="client.name" name="name" class="form-control" placeholder="Enter Name..." required>
+                </div>
+                <div class="col-md-5 col-sm-12  px-0">
+                    <div class="inputHeader w-auto bg-primary">CI</div>   
+                    <input type="text" [(ngModel)]="client.ci" name="CI" class="form-control" placeholder="Enter CI..." required>
+                </div>
+                <div class="col-md-5 col-sm-12 px-0 "  >
+                    <div class="inputHeader w-auto bg-primary">Email</div>   
+                    <input type="text" [(ngModel)]="client.email" name="email" class="form-control" placeholder="Enter Email..." required>
+                </div>
+                <div class="col-md-5 col-sm-12 px-0">
+                    <div class="inputHeader w-auto bg-primary">Phone Number</div>   
+                    <input type="text" [(ngModel)]="client.phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter PhoneNumber..." required>
+                </div>
+
+
+                <div class="col-12 px-0" style="display: flex; justify-content: center; ">
+                    <div class="Header">Machine</div>  
+                </div>
+                <div class="form-group px-0 col-md-4">
+                    <label for="type" class="inputHeader w-auto bg-primary ">Type</label>
+                    <select type="type "class="form-select" name="type" [(ngModel)]="order.kind" >
+                      <option [value]="'PC'">PC</option>
+                      <option [value]="'Laptop'">Laptop</option>
+                    </select>
+                </div>
+                <div *ngIf="order.kind==='Laptop'" class="form-group col-md-4" style="margin-left:50px">
+                    <label for="type" class="inputHeader w-auto bg-primary ">Brand</label>
+                    <input type="text" [(ngModel)]="order.brand" name="Brand" class="form-control" placeholder="Enter Brand..." required>
+                </div>
+
+
+                <div *ngIf="order.kind === 'PC' " class="col-12 px-0">
+                    <div class="col-12 px-0" style="display: flex; justify-content: center;">
+                        <div class="Header">Setup</div>  
+                    </div>
+
+                    <div class="col-md-4 px-0" style="display: flex; justify-content: left;">
+                    </div>
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveMotherBoard===false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveMotherBoard" type="checkbox" [(ngModel)]="haveMotherBoard" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">MotherBoard</div>  
+                                    <input type="text" [(ngModel)]="order.motherBoard" name="MotherBoard" [disabled]="haveMotherBoard===false" class="form-control" placeholder="Enter Name..." required>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveCPU==false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveCPU" type="checkbox" [(ngModel)]="haveCPU" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">CPU</div>  
+                                    <input type="text" [(ngModel)]="order.CPU" name="CPU" [disabled]="haveCPU===false" class="form-control" placeholder="Enter Name..." required>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="havePowerSupply==false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HavePowerSupply" type="checkbox" [(ngModel)]="havePowerSupply" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">PowerSupply</div>  
+                                    <input type="text" [(ngModel)]="order.powerSupply" name="PowerSupply" [disabled]="havePowerSupply===false" class="form-control" placeholder="Enter Name..." required>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                    
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveGPU===false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveGPU" type="checkbox" [(ngModel)]="haveGPU" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">GPU</div>  
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select type="text "class="form-select " [disabled]="haveGPU===false" name="manyGPU" [(ngModel)]="manyGPU" >
+                                                    <option [value]="1">1</option>
+                                                    <option [value]="2">2</option>
+                                                    <option [value]="3">3</option>
+                                                    <option [value]="4">4</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-8">
+                                                <ul style="list-style: none; display: flex; flex-direction: column; margin-left: 0; padding: 0 15px 0 0;">
+                                                    <li *ngFor="let n of order.GPU; let indice = index;" >
+                                                        <div class="row" style="margin-top: 5px;">
+                                                            <span *ngIf="manyGPU>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                                                            <input  *ngIf="manyGPU>indice" style="border: 0px solid #000;" type="GPU" [(ngModel)]="n.name" name="hdd" [disabled]="haveGPU===false" class="form-control col-10" placeholder="Enter Name..." required>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveHDD===false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveHDD" type="checkbox" [(ngModel)]="haveHDD" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">HDD</div>  
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select type="text "class="form-select " [disabled]="haveHDD===false" name="manyHDD" [(ngModel)]="manyHDD" >
+                                                    <option [value]="1">1</option>
+                                                    <option [value]="2">2</option>
+                                                    <option [value]="3">3</option>
+                                                    <option [value]="4">4</option>
+                                                    <option [value]="5">5</option>
+                                                    <option [value]="6">6</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-8">
+                                                <ul style="list-style: none; display: flex; flex-direction: column; margin-left: 0; padding: 0 15px 0 0;">
+                                                    <li *ngFor="let n of order.HDD; let indice = index;" >
+                                                        <div class="row" style="margin-top: 5px;">
+                                                            <span *ngIf="manyHDD>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                                                            <input  *ngIf="manyHDD>indice" style="border: 0px solid #000;" type="text" [(ngModel)]="n.name" name="hdd" [disabled]="haveHDD===false" class="form-control col-10" placeholder="Enter Name..." required>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveRAM===false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveRAM" type="checkbox" [(ngModel)]="haveRAM" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">RAM</div>  
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select type="text "class="form-select " [disabled]="haveRAM===false" name="manyRAM" [(ngModel)]="manyRAM" >
+                                                    <option [value]="1">1</option>
+                                                    <option [value]="2">2</option>
+                                                    <option [value]="3">3</option>
+                                                    <option [value]="4">4</option>
+                                                    <option [value]="5">5</option>
+                                                    <option [value]="6">6</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-8">
+                                                <ul style="list-style: none; display: flex; flex-direction: column; margin-left: 0; padding: 0 15px 0 0;">
+                                                    <li *ngFor="let n of order.RAM; let indice = index;" >
+                                                        <div class="row" style="margin-top: 5px;">
+                                                            <span *ngIf="manyRAM>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                                                            <input  *ngIf="manyRAM>indice" style="border: 0px solid #000;" type="text" [(ngModel)]="n.name" name="ram" [disabled]="haveRAM===false" class="form-control col-10" placeholder="Enter Name..." required>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group " style="border: 1px solid #000;" >
+                        <div class="form-check  form-switch"  style="margin-left:0;padding: 15px 15px 25px 0px;"[style.background]="haveOthers==false?'#eceeef':'white'">
+                            <div class="row">
+                                <div class="col-1" style="display: flex; align-items: center; justify-content: right; ">
+                                    <input class="form-check-input" style="border: 1px solid #000;" name="HaveOthers" type="checkbox" [(ngModel)]="haveOthers" id="flexCheckDefault">
+                                </div>
+                                <div class="col-11" >
+                                    <div class=" inputHeader col-3 bg-primary" style="margin-left: 0;">Others</div>  
+                                    <textarea class="form-control" [(ngModel)]="order.others" name="Others" [disabled]="haveOthers===false"  id="exampleTextarea" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                
+                <div class="form-group col-md-12 px-0 w-auto">
+                    <label for="exampleTextarea" class="form-label mt-4">Description</label>
+                    <textarea class="form-control" [(ngModel)]="order.description" name="description" id="exampleTextarea" rows="4"></textarea>
+                </div>
+                <div class="col-12"   style="padding-left: 0;">
+                    <div class="row" style="display: flex; justify-content: center; align-items: center; padding: 0;">
+                        <div class="input-group col-8">
+                            <span class="input-group-text">$</span>
+                            <input type="number" [(ngModel)]="order.price" name="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                        <div class="col " style="display: flex; justify-content: right; align-items: center;padding: 0;">
+                            <button type="submit"  class="btn btn-success" style="width: 120px; margin-right: 10px;">Add</button>
+                            <button type="button" (click)="refresh()" class="btn btn-danger"  style="width: 120px;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>

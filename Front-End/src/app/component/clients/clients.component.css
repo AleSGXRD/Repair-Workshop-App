@@ -1,0 +1,188 @@
+:root{
+    --my-color: #000;
+}
+.field{
+    background: #fff;
+    padding: 0 0 25px 0;
+    border: 1px solid #000;
+    border-radius: 0.9rem;
+    box-shadow: 4px 4px 4px 4px #00000080;
+
+    filter: opacity(1);
+    animation: Fade 1s 1;
+    font-style: italic;
+    font-variant: small-caps;
+    font-weight: bolder;
+
+    max-height: 40rem;
+    overflow: scroll;
+
+    animation: appear 0.5s 1;
+}
+@keyframes appear {
+    0%{
+        filter: opacity(0);
+    }
+    100%{
+        filter: opacity(1);
+    }
+}
+.title{
+    min-height: 3.4rem;
+    font-size: 2.8rem;
+    color: #000;
+    border-radius:  0.9rem 0.9rem 0 0;
+    background: rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+    text-align: center;
+    align-items: center;
+
+    padding: 13px  25px 0px 25px ;
+
+}
+.title input{
+    border-radius: 2.5rem;
+    border: 0.5px solid #ccc;
+    background: #f9f8f8;
+    font-size: 18px;
+
+    max-height: 35px;
+    max-width: 300px;
+    z-index: 2;
+}
+.search{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.search button{
+    font-size: 18px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 2.5rem;
+    min-height: 30px;
+    max-width: 50px;
+    transform: translate(-22px,0px);
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 8px;
+}
+.search button:hover{
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.845);
+    border: 1px solid rgba(0, 0, 0, 0.414);
+    transition: 0.3s;
+}
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+.filter .desactive{
+    font-size: 18px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 2.5rem;
+    min-height: 30px;
+    min-width: 30px;
+    margin-left: 15px;
+    z-index: 1;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter .desactive:hover{
+    background: var(--my-color);
+    transition: 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.414);
+}
+.filter .active{
+    font-size: 18px;
+    background: var(--my-color);
+    border: 1px solid rgba(0, 0, 0, 0.414);
+    border-radius: 2.5rem;
+    min-height: 30px;
+    min-width: 30px;
+    margin-left: 15px;
+    z-index: 1;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter .active:hover{   
+    background: var(--my-color2);
+    transition: 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.686);
+}
+img{
+    width: 50px;
+    height: 50px;
+}
+.row{
+    padding: 0;
+    margin: 0;
+}
+.general-row{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+.list-orders{
+    list-style: none;
+    padding: 25px  25px 0px 25px ;
+}
+.list-orders li{
+    background: rgba(0, 0, 0, 0.037);
+    border-radius: 0.8rem;
+    padding: 0;
+    margin: 0px 60px 0 0px;
+    cursor: pointer;
+    
+    border: 1px solid rgba(0,0,0,0.125);
+}
+.list-orders li:hover{
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.247);
+    transition: 0.4s;
+}
+
+.icon-task{
+    fill: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 128px;
+    height: 128px;
+}
+.info{
+    font-size: 24px;
+    color: #000;
+    font-weight: bolder;
+}
+.infodate{
+    font-size: minmax(18px);
+}
+.infoprice{
+    font-size: 32px;
+    font-weight: bolder;
+    color: #000;
+}
+.info-description{
+    grid-column: span 4;
+    text-align: right;
+    max-height: 50px;
+    
+    font-size: 28px;
+    color: #000;
+    
+}

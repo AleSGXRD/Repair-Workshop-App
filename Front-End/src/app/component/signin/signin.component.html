@@ -1,0 +1,22 @@
+<div class="row align-items-center " style="height: 30rem;" >
+    <div class="col col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header text-center">
+                Sign In
+            </div>
+            <div class="card-body">
+                <form (submit)="signIn()">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.name" name="email" class="form-control" placeholder="Enter Name..." required >
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Enter Password..." required >
+                    </div>
+                    <a href="/signup" style="text-align: right; width: 100%;">Don't have an account?</a>  
+                    <p class="sign-in-error" *ngIf="hasError === true" >User or password are wrong</p>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

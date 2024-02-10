@@ -1,0 +1,468 @@
+
+<div class="field h-auto w-auto">
+    <div class="field-client " >
+        <div class="title" style="padding: 0px;  font-size: 32px; display: flex;justify-content: space-between;">
+            <div></div>
+            Client
+            <button (click)="deleteThisClient()" type="submit" style="--my-color: #e93a3a; "class="button-exit"  type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                  </svg>
+            </button>
+        </div>
+        <div class="row col-12"  style="padding:25px 18px !important;">
+            <div class="icon col-12 col-sm-3" style="display:flex; justify-content: center; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg"style="justify-content: center; " fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </div>
+            <div class="col-12 col-sm-9" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px,100%),2fr)); gap: 20px;">
+                <div class="case">
+                    <div class="sub-name">Name</div><br/>
+                    {{client.name}}
+                </div>
+                <div class="case">
+                    <div class="sub-name">CI</div><br/>
+                    {{client.ci}}</div>
+                <div class="case">
+                    <div class="sub-name">Email</div><br/>
+                    {{client.email}}</div>
+                <div class="case">
+                    <div class="sub-name">PhoneNumber</div><br/>
+                    {{client.phoneNumber}}</div>
+            </div>
+        </div>
+        <div *ngIf="orderID===0 && orderFinishedID === 0" >
+            <hr />
+            <p *ngIf="client.order.length >0" class="text-center" style="font-size: 24px; margin-bottom: 0;font-weight: bolder;">Orders</p>
+            <ul *ngIf="client.order.length >0"  class="row list-orders" id="ListElement" style="padding-bottom: 25px;">
+                <li  class="col-12" *ngFor="let n of client.order; let indice = index" style="padding: 5px 5px;" (click)="orderID = n.id;showOrder()" [style.border-radius]=" client.order.length===1?'0.8rem 0.8rem 0.8rem 0.8rem':indice==0?'0.8rem 0.8rem 0 0':indice== client.order.length-1?'0 0 0.8rem 0.8rem':'0 0 0 0'">
+                    <div class="row col-12">
+                    <div  class="row col-12 col-sm-3 " style="overflow: hidden; ">
+                        <div class="icon-task col-12 col-sm-3 " style="grid-row: span 2;">
+                            <svg *ngIf="n.kind ==='PC'" xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-pc-display icon" viewBox="0 0 16 16">
+                            <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
+                          </svg>
+                          <svg *ngIf="n.kind ==='Laptop'" xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-laptop icon" viewBox="0 0 16 16">
+                            <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                          </svg>
+                        </div>
+                    </div>
+                    <div  class="row col-12 col-sm-9 " style="overflow: hidden; ">
+                        <div class="info col-12 col-sm-4">
+                            {{n.kind}} {{n.brand}}
+                        </div>
+        
+                        <div class="infodate col-12 col-sm-4" style="text-align: right;grid-column: span auto-fit;">
+                            {{n.createdAt.substr(0,10)}}
+                        </div>
+        
+                        <div class="infoprice col-12 col-sm-4" style="grid-column: span 2; text-align: right;">
+                            {{n.price}} CUP
+                        </div>
+                        <div class="info-description col-12 col-sm-12" >
+                            <ng-container >
+                                 {{n.description}} 
+                            </ng-container>
+                            
+                        </div>
+                    </div>
+                </div>
+                </li>
+            </ul>
+            <p class="text-center" style="font-size: 24px; margin-bottom: 0;font-weight: bolder;">Finished</p>
+            <ul class="row list-orders" id="ListElement" style="padding-bottom: 25px;">
+                <li  class="col-12" *ngFor="let n of client.orderFinished; let indice = index" style="padding: 5px 5px;" (click)="orderFinishedID = n.id;showOrder()" [style.border-radius]=" client.order.length===1?'0.8rem 0.8rem 0.8rem 0.8rem':indice==0?'0.8rem 0.8rem 0 0':indice== client.order.length-1?'0 0 0.8rem 0.8rem':'0 0 0 0'">
+                    <div class="imagen">
+                        <svg *ngIf="n.completed===true" 
+           viewBox="0 0 600 600"
+           version="1.1"
+           id="svg9724"
+           sodipodi:docname="check-circle.svg"
+           inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)"
+           width="64"
+           height="64"
+           xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+           xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+           xmlns="http://www.w3.org/2000/svg"
+           xmlns:svg="http://www.w3.org/2000/svg">
+          <defs
+             id="defs9728" />
+         
+          
+          <g
+             id="g10449"
+             transform="matrix(0.95173205,0,0,0.95115787,13.901174,12.168794)"
+             style="stroke-width:1.05103">
+            <g
+               id="path10026"
+               inkscape:transform-center-x="-0.59233046"
+               inkscape:transform-center-y="-20.347403"
+               transform="matrix(1.3807551,0,0,1.2700888,273.60014,263.99768)" />
+            <g
+               id="g11314"
+               transform="matrix(1.5092301,0,0,1.3955555,36.774048,-9.4503933)"
+               style="stroke-width:50.6951" />
+            <path
+               id="path501"
+               style="color:#3ae954;fill:#3ae954;stroke-linecap:round;stroke-linejoin:round;"
+               d="m 573.78125,71.326172 c -11.14983,0.0041 -21.84136,4.437288 -29.72266,12.324219 L 269.17773,358.69727 201.88007,226.17417 c -16.41326,-16.42281 -43.03211,-16.43069 -59.45508,-0.0176 -16.42281,16.41326 -16.43068,43.03211 -0.0176,59.45508 l 97.034,162.277 c 16.42109,16.42734 43.05156,16.42734 59.47265,0 L 603.53125,143.08789 c 16.41439,-16.4232 16.40651,-43.04355 -0.0176,-59.457031 -7.88689,-7.88216 -18.58202,-12.308309 -29.73242,-12.304687 z M 297.41602,-12.826172 C 216.90703,-11.965911 137.45719,19.625316 77.640625,79.496094 -23.103069,180.33109 -43.683279,336.82447 27.546875,460.31055 98.777031,583.79662 244.53398,644.23617 382.17383,607.32227 519.81368,570.40835 615.82422,445.15088 615.82422,302.57422 c -1.6e-4,-23.21855 -18.82247,-42.04086 -42.04102,-42.04102 -23.21931,-9.2e-4 -42.04281,18.82171 -42.04297,42.04102 0,104.9608 -70.10118,196.38166 -171.34765,223.53515 C 259.14611,553.26287 152.80736,509.18649 100.38086,418.29883 47.954364,327.41117 62.989814,213.1262 137.12305,138.92578 211.25628,64.725365 325.35936,49.693075 416.14258,102.1543 c 20.1039,11.61703 45.81879,4.73687 57.43554,-15.367191 C 485.19415,66.68416 478.31507,40.97088 458.21289,29.353516 408.08311,0.38483622 352.50111,-13.414771 297.41602,-12.826172 Z"
+               sodipodi:nodetypes="scccccccccsssssscccssscscs" />
+          </g>
+                        </svg>
+                        <svg *ngIf="n.completed===false"  
+           viewBox="0 0 600 600"
+           version="1.1"
+           id="svg9724"
+           sodipodi:docname="cancel-circle.svg"
+           inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)"
+           width="64"
+           height="64"
+           xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+           xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+           xmlns="http://www.w3.org/2000/svg"
+           xmlns:svg="http://www.w3.org/2000/svg">
+          <defs
+             id="defs9728" />
+         
+          
+          <g
+             id="g10449"
+             transform="matrix(0.95173205,0,0,0.95115787,13.901174,12.168794)"
+             style="stroke-width:1.05103">
+            <g
+               id="path10026"
+               inkscape:transform-center-x="-0.59233046"
+               inkscape:transform-center-y="-20.347403"
+               transform="matrix(1.3807551,0,0,1.2700888,273.60014,263.99768)" />
+            <g
+               id="g11314"
+               transform="matrix(1.5092301,0,0,1.3955555,36.774048,-9.4503933)"
+               style="stroke-width:50.6951" />
+            <path
+               style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="m 300.60937,-12.792969 c -173.60599,0 -315.214839,141.724839 -315.214839,315.404299 0,173.67945 141.608849,315.40429 315.214839,315.40429 173.606,0 315.21485,-141.72484 315.21485,-315.40429 0,-173.67946 -141.60885,-315.404299 -315.21485,-315.404299 z m 0,84.082031 c 128.13278,10e-7 231.13086,103.052738 231.13086,231.322268 0,128.26952 -102.99808,231.32226 -231.13086,231.32226 C 172.4766,533.93359 69.476562,430.88085 69.476562,302.61133 69.476563,174.3418 172.4766,71.289062 300.60937,71.289062 Z"
+               id="path390" />
+            <path
+               style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;"
+               d="M 416.16211,144.93164 A 42.041401,42.041401 0 0 0 386.4375,157.25391 L 155.30469,388.53125 a 42.041401,42.041401 0 0 0 0.0195,59.45703 42.041401,42.041401 0 0 0 59.45508,-0.0195 L 445.91211,216.69141 a 42.041401,42.041401 0 0 0 -0.0195,-59.45704 42.041401,42.041401 0 0 0 -29.73047,-12.30273 z"
+               id="path446" />
+            <path
+               style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;"
+               d="m 185.05664,144.93164 a 42.041401,42.041401 0 0 0 -29.73242,12.30273 42.041401,42.041401 0 0 0 -0.0195,59.45704 L 386.4375,447.96875 a 42.041401,42.041401 0 0 0 59.45508,0.0195 42.041401,42.041401 0 0 0 0.0195,-59.45703 L 214.7793,157.25391 a 42.041401,42.041401 0 0 0 -29.72266,-12.32227 z"
+               id="path446-3" />
+          </g>
+                        </svg>
+                    </div>
+                    
+                    <div class="row col-12">
+                    <div  class="row col-12 col-sm-3 " style="overflow: hidden; ">
+                        <div class="icon-task col-12 col-sm-12 " style="grid-row: span 2;">
+                            <svg *ngIf="n.kind ==='PC'" xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
+                            <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
+                          </svg>
+                          <svg *ngIf="n.kind ==='Laptop'" xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                            <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                          </svg>
+                        </div>
+                    </div>
+                    <div  class="row col-12 col-sm-9 " style="overflow: hidden; ">
+                        <div class="info col-12 col-sm-4">
+                            {{n.kind}} {{n.brand}}
+                        </div>
+        
+                        <div class="infodate col-12 col-sm-4" style="text-align: right;grid-column: span auto-fit;">
+                            {{n.createdAt.substr(0,10)}}
+                            <br/>
+                        </div>
+        
+                        <div class="infoprice col-12 col-sm-4" style="grid-column: span 2; text-align: right;">
+                            {{n.price}} CUP
+                        </div>
+                        <div class="info-description col-12 col-sm-12" >
+                            {{n.description}} 
+                        </div>
+                    </div>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="field-client" *ngIf="orderID!==0">
+        <div class="title" style="padding: 0px; font-size: 32px; display: flex; justify-content: space-between;">
+            <div></div>
+            Order
+            <div style="justify-content: center;display: flex;flex-direction: row;">
+            <button (click)="deleteThisOrder()" type="submit" style="--my-color: #e93a3a; "class="button-exit"  type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                  </svg>
+            </button>
+            <button (click)="hideOrder()" type="submit" style="--my-color: #e93a3a; "class="button-exit"  type="button">
+                ×
+            </button>
+            </div>
+        </div>
+        <div class="row col-12" style="padding:25px 18px !important; " >
+            <div class="icon col-12 col-sm-3" style="display:flex; justify-content: center; align-items: center; margin-bottom: 25px;">
+                <svg *ngIf="order.kind ==='PC'" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
+                    <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
+                  </svg>
+                  <svg *ngIf="order.kind ==='Laptop'" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                  </svg>
+            </div>
+            <div class="col-12 col-sm-9" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px,100%),2fr)); gap: 20px; margin-bottom: 50px;">
+                <div class="case" *ngIf="order.motherBoard !== '' ">
+                    <div class="sub-name">MotherBoard</div><br/>
+                    {{order.motherBoard}}
+                </div>
+                <div class="case" *ngIf="order.CPU !== ''">
+                    <div class="sub-name">CPU</div><br/>
+                    {{order.CPU}}</div>
+                <div class="case" *ngIf="order.powerSupply !== ''">
+                    <div class="sub-name">PowerSupply</div><br/>
+                    {{order.powerSupply}}</div>
+                <div class="case" *ngIf="orderHaveBrand">
+                    <div class="sub-name">Brand</div><br/>
+                    {{order.brand}}
+                </div>
+            </div>
+            <div class="col-12" *ngIf="orderHaveGPU">
+                <div class="sub-name"  style="margin-bottom: 25px;">GPU</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of order.GPU.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="order.GPU.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="order.GPU.split(',').length>indice" style="border: 0px solid #000;color:#000;  background: #fbf7f7;" type="GPU" value={{n}} name="GPU"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12" *ngIf="orderHaveHDD">
+                <div class="sub-name"  style="margin-bottom: 25px;">HDD</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of order.HDD.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="order.HDD.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="order.HDD.split(',').length>indice" style="border: 0px solid #000;color:#000;  background: #fbf7f7;" type="HDD" value={{n}} name="HDD"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12" *ngIf="orderHaveRAM" >
+                <div class="sub-name" style="margin-bottom: 25px;">RAM</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of order.RAM.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="order.RAM.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="order.RAM.split(',').length>indice" style="border: 0px solid #000; color:#000; background: #fbf7f7;" type="RAM" value={{n}} name="RAM"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-12" *ngIf="orderHaveOthers" style="margin-bottom: 25px;">
+                <div class="sub-name"  style="margin-bottom: 25px;">Others</div>
+                <textarea name="others" id="others" style="width: 100%;" [value]="order.others" disabled rows="4"></textarea>
+            </div>
+            
+            <div class="col-12" *ngIf="orderHaveDescription" style="margin-bottom: 25px;">
+                <div class="sub-name" style="margin-bottom: 25px;">Description</div>
+                <textarea name="others" id="others" style="width: 100%;" [value]="order.description" disabled rows="4"></textarea>
+            </div>
+
+            <div class="col-12">
+                <div class="row" style="display: flex; justify-content: center; align-items: center; ">
+                    <div class="input-group col-8" style="padding: 0;">
+                        <span class="input-group-text">$</span>
+                        <input type="number" [(ngModel)]="order.price" name="number" class="form-control" disabled="" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <div class="col " style="display: flex; justify-content: right; align-items: center;padding: 0;">
+                        <button type="button" (click)="finishOrder(true)" class="btn btn-success" style="width: 120px; margin-right: 10px;">Complete</button>
+                        <button type="button" (click)="finishOrder(false)" class="btn btn-danger"  style="width: 120px;">Failed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field-client" style="position: relative;" *ngIf="orderFinishedID!==0">
+        
+        <div class="title" style="padding: 0px; font-size: 32px; display: flex; justify-content: space-between;">
+            <div></div>
+            Order
+            <div style="justify-content: center;display: flex;flex-direction: row;">
+            <button (click)="deleteThisOrder()" type="submit" style="--my-color: #e93a3a;  "class="button-exit"  type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                  </svg>
+            </button>
+            <button (click)="hideOrder()" type="submit" style="--my-color: #e93a3a; "class="button-exit"  type="button">
+                ×
+            </button>
+            </div>
+        </div>
+        <div class="backimg" >
+            <svg *ngIf="orderFinished.completed===true" 
+viewBox="0 0 600 600"
+version="1.1"
+id="svg9724"
+sodipodi:docname="check-circle.svg"
+inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)"
+
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:svg="http://www.w3.org/2000/svg">
+<defs
+ id="defs9728" />
+
+
+<g
+ id="g10449"
+ transform="matrix(0.95173205,0,0,0.95115787,13.901174,12.168794)"
+ style="stroke-width:1.05103">
+<g
+   id="path10026"
+   inkscape:transform-center-x="-0.59233046"
+   inkscape:transform-center-y="-20.347403"
+   transform="matrix(1.3807551,0,0,1.2700888,273.60014,263.99768)" />
+<g
+   id="g11314"
+   transform="matrix(1.5092301,0,0,1.3955555,36.774048,-9.4503933)"
+   style="stroke-width:50.6951" />
+<path
+   id="path501"
+   style="color:#3ae954;fill:#3ae954;stroke-linecap:round;stroke-linejoin:round;"
+   d="m 573.78125,71.326172 c -11.14983,0.0041 -21.84136,4.437288 -29.72266,12.324219 L 269.17773,358.69727 201.88007,226.17417 c -16.41326,-16.42281 -43.03211,-16.43069 -59.45508,-0.0176 -16.42281,16.41326 -16.43068,43.03211 -0.0176,59.45508 l 97.034,162.277 c 16.42109,16.42734 43.05156,16.42734 59.47265,0 L 603.53125,143.08789 c 16.41439,-16.4232 16.40651,-43.04355 -0.0176,-59.457031 -7.88689,-7.88216 -18.58202,-12.308309 -29.73242,-12.304687 z M 297.41602,-12.826172 C 216.90703,-11.965911 137.45719,19.625316 77.640625,79.496094 -23.103069,180.33109 -43.683279,336.82447 27.546875,460.31055 98.777031,583.79662 244.53398,644.23617 382.17383,607.32227 519.81368,570.40835 615.82422,445.15088 615.82422,302.57422 c -1.6e-4,-23.21855 -18.82247,-42.04086 -42.04102,-42.04102 -23.21931,-9.2e-4 -42.04281,18.82171 -42.04297,42.04102 0,104.9608 -70.10118,196.38166 -171.34765,223.53515 C 259.14611,553.26287 152.80736,509.18649 100.38086,418.29883 47.954364,327.41117 62.989814,213.1262 137.12305,138.92578 211.25628,64.725365 325.35936,49.693075 416.14258,102.1543 c 20.1039,11.61703 45.81879,4.73687 57.43554,-15.367191 C 485.19415,66.68416 478.31507,40.97088 458.21289,29.353516 408.08311,0.38483622 352.50111,-13.414771 297.41602,-12.826172 Z"
+   sodipodi:nodetypes="scccccccccsssssscccssscscs" />
+</g>
+            </svg>
+            <svg *ngIf="orderFinished.completed===false"  
+viewBox="0 0 600 600"
+version="1.1"
+id="svg9724"
+sodipodi:docname="cancel-circle.svg"
+inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)"
+
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:svg="http://www.w3.org/2000/svg">
+<defs
+ id="defs9728" />
+
+
+<g
+ id="g10449"
+ transform="matrix(0.95173205,0,0,0.95115787,13.901174,12.168794)"
+ style="stroke-width:1.05103">
+<g
+   id="path10026"
+   inkscape:transform-center-x="-0.59233046"
+   inkscape:transform-center-y="-20.347403"
+   transform="matrix(1.3807551,0,0,1.2700888,273.60014,263.99768)" />
+<g
+   id="g11314"
+   transform="matrix(1.5092301,0,0,1.3955555,36.774048,-9.4503933)"
+   style="stroke-width:50.6951" />
+<path
+   style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+   d="m 300.60937,-12.792969 c -173.60599,0 -315.214839,141.724839 -315.214839,315.404299 0,173.67945 141.608849,315.40429 315.214839,315.40429 173.606,0 315.21485,-141.72484 315.21485,-315.40429 0,-173.67946 -141.60885,-315.404299 -315.21485,-315.404299 z m 0,84.082031 c 128.13278,10e-7 231.13086,103.052738 231.13086,231.322268 0,128.26952 -102.99808,231.32226 -231.13086,231.32226 C 172.4766,533.93359 69.476562,430.88085 69.476562,302.61133 69.476563,174.3418 172.4766,71.289062 300.60937,71.289062 Z"
+   id="path390" />
+<path
+   style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;"
+   d="M 416.16211,144.93164 A 42.041401,42.041401 0 0 0 386.4375,157.25391 L 155.30469,388.53125 a 42.041401,42.041401 0 0 0 0.0195,59.45703 42.041401,42.041401 0 0 0 59.45508,-0.0195 L 445.91211,216.69141 a 42.041401,42.041401 0 0 0 -0.0195,-59.45704 42.041401,42.041401 0 0 0 -29.73047,-12.30273 z"
+   id="path446" />
+<path
+   style="color:#e93a3a;fill:#e93a3a;stroke-linecap:round;stroke-linejoin:round;"
+   d="m 185.05664,144.93164 a 42.041401,42.041401 0 0 0 -29.73242,12.30273 42.041401,42.041401 0 0 0 -0.0195,59.45704 L 386.4375,447.96875 a 42.041401,42.041401 0 0 0 59.45508,0.0195 42.041401,42.041401 0 0 0 0.0195,-59.45703 L 214.7793,157.25391 a 42.041401,42.041401 0 0 0 -29.72266,-12.32227 z"
+   id="path446-3" />
+</g>
+            </svg>
+        </div>
+        <div class="row col-12" style="padding:25px 18px !important; " >
+            <div class="icon col-12 col-sm-3" style="display:flex; justify-content: center; align-items: center; margin-bottom: 25px;">
+                <svg *ngIf="orderFinished.kind ==='PC'" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
+                    <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
+                  </svg>
+                  <svg *ngIf="orderFinished.kind ==='Laptop'" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                  </svg>
+            </div>
+            <div class="col-12 col-sm-9" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px,100%),2fr)); gap: 20px; margin-bottom: 50px;">
+                <div class="case" *ngIf="orderFinished.motherBoard !== '' ">
+                    <div class="sub-name">MotherBoard</div><br/>
+                    {{orderFinished.motherBoard}}
+                </div>
+                <div class="case" *ngIf="orderFinished.CPU !== ''">
+                    <div class="sub-name">CPU</div><br/>
+                    {{orderFinished.CPU}}</div>
+                <div class="case" *ngIf="orderFinished.powerSupply !== ''">
+                    <div class="sub-name">PowerSupply</div><br/>
+                    {{orderFinished.powerSupply}}</div>
+                <div class="case" *ngIf="orderHaveBrand">
+                    <div class="sub-name">Brand</div><br/>
+                    {{orderFinished.brand}}
+                </div>
+            </div>
+            <div class="col-12" *ngIf="orderHaveGPU">
+                <div class="sub-name"  style="margin-bottom: 25px;">GPU</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of orderFinished.GPU.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="orderFinished.GPU.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="orderFinished.GPU.split(',').length>indice" style="border: 0px solid #000;color:#000;  background: #fbf7f7;" type="GPU" value={{n}} name="GPU"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12" *ngIf="orderHaveHDD">
+                <div class="sub-name"  style="margin-bottom: 25px;">HDD</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of orderFinished.HDD.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="orderFinished.HDD.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="orderFinished.HDD.split(',').length>indice" style="border: 0px solid #000;color:#000;  background: #fbf7f7;" type="HDD" value={{n}} name="HDD"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12" *ngIf="orderHaveRAM" >
+                <div class="sub-name" style="margin-bottom: 25px;">RAM</div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li *ngFor="let n of orderFinished.RAM.split(','); let indice = index;">
+                        <div class="row col-12 col-sm-12 col-md-9 " *ngIf="n!==''" style="margin-top: 0px;padding: 0;justify-content: left;">
+                            <span *ngIf="orderFinished.RAM.split(',').length>indice"  class="input-group-text col-1">{{indice+1}}</span>
+                            <input  *ngIf="orderFinished.RAM.split(',').length>indice" style="border: 0px solid #000; color:#000; background: #fbf7f7;" type="RAM" value={{n}} name="RAM"  class="form-control col-9 col-sm-10" disabled>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-12" *ngIf="orderHaveOthers" style="margin-bottom: 25px;">
+                <div class="sub-name"  style="margin-bottom: 25px;">Others</div>
+                <textarea name="others" id="others" style="width: 100%;" [value]="orderFinished.others" disabled rows="4"></textarea>
+            </div>
+            
+            <div class="col-12" *ngIf="orderHaveDescription" style="margin-bottom: 25px;">
+                <div class="sub-name" style="margin-bottom: 25px;">Description</div>
+                <textarea name="others" id="others" style="width: 100%;" [value]="orderFinished.description" disabled rows="4"></textarea>
+            </div>
+
+            <div class="col-12">
+                <div class="row" style="display: flex; justify-content: space-between; align-items: center; ">
+                    <div class="input-group col-8" style="padding: 0;">
+                        <span class="input-group-text">$</span>
+                        <input type="number" [(ngModel)]="orderFinished.price" name="number" class="form-control" disabled="" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

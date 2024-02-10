@@ -1,0 +1,95 @@
+div{
+    color: #292727;
+    font-size: 18px; justify-content: center;
+}
+
+.field-client{
+    background: white;
+    border: 0px solid #000;
+    border-radius: 0.8rem;
+    box-shadow: 0px 0px 2px 2px #24232356;
+    
+    margin: 25px 18px;
+    padding: 0 !important;
+    
+}
+.icon{
+    min-width: 128px;
+    min-height: 128px;
+    max-width: 256px;
+    max-height: 256px;
+}
+
+.case{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+.sub-name{
+    background: #000;
+    color: white;
+    min-width: 200px;
+
+    max-width: 350px;
+    text-align: center; 
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: white;
+    font-size: 18px;
+    min-height: 2.5rem;
+    border: 1px solid #ccc;
+}
+.button-exit{
+    font-size: 18px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 2.5rem;
+    min-height: 30px;
+    min-width: 30px;
+    margin-right: 15px;
+    z-index: 1;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-exit > svg{
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 24px;
+    max-height: 24px;
+}
+.button-exit:hover{
+    background: var(--my-color);
+    transition: 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.414);
+}
+.list-orders{
+    padding-bottom: 25px !important;
+}
+.list-orders li .imagen svg{
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    z-index: 3;
+}
+
+.backimg{
+    display: flex;
+    align-items: end;
+    
+    position: absolute;
+
+    height: 100%;
+    width: 25%;
+    right: 5%;
+    bottom: 2%;
+}

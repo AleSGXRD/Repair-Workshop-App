@@ -1,0 +1,21 @@
+<div class="row align-items-center " style="height: 30rem;" >
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header text-center">
+                Sign Up
+            </div>
+            <div class="card-body">
+                <form (submit)="signUp()">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.name" name="email" class="form-control" placeholder="Enter Name..." required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="password..." required autofocus>
+                    </div>
+                    <a href="/signin" style="text-align: right; width: 100%;">Have already an account?</a>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
